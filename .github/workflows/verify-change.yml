@@ -38,7 +38,7 @@ jobs:
           rm -f "$tmp"
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -112,7 +112,7 @@ jobs:
           for dir in "${packages[@]}"; do
             [[ -n "$dir" ]] || continue
             echo "Building $dir with paru"
-            if sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE' && paru --noconfirm -B '$GITHUB_WORKSPACE/$dir'" >/tmp/build-"$dir".log 2>&1; then
+            if sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE' && paru --noconfirm --skipreview --useask --removemake --cleanafter --nocheck -B '$GITHUB_WORKSPACE/$dir'" >/tmp/build-"$dir".log 2>&1; then
               BUILT+=("$dir")
               echo "Build OK: $dir"
             else

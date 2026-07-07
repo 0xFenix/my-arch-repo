@@ -47,7 +47,7 @@ jobs:
           rm -f "$tmp"
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
@@ -109,7 +109,7 @@ jobs:
             fi
 
             echo "Building $dir with paru"
-            if sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$dir' && paru --noconfirm -B '$GITHUB_WORKSPACE/$dir'" >/tmp/build-"$dir".log 2>&1; then
+            if sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$dir' && paru --noconfirm --skipreview --useask --removemake --cleanafter --nocheck -B '$GITHUB_WORKSPACE/$dir'" >/tmp/build-"$dir".log 2>&1; then
               find "$dir" -maxdepth 1 -name '*.pkg.tar.zst' -exec mv -f {} output/ \;
               pacman -Sy --noconfirm >/dev/null 2>&1 || true
               BUILT+=("$dir")
