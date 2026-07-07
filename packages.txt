@@ -3,6 +3,7 @@ catppuccin-fcitx5-git
 catppuccin-obs-theme-git
 catppuccin-whiskers-bin
 equicord-installer-bin
+guile1.8
 icu74
 libgraph
 lightworks
@@ -13,11 +14,15 @@ msi-ec-dkms-git
 networkmanager-iwd
 nmtui-go
 obs-pipewire-audio-capture
+onlyoffice
 osu-lazer-bin
 osu-mime
+paru
 physlock
 pwvucontrol
 rhythmbox-plugin-tray-icon
+ripdrag
+rustdesk
 sfml2
 snapper-rollback
 teamviewer
