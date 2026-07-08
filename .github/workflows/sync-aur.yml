@@ -42,7 +42,7 @@ jobs:
           FAILED=()
           REMOVED=()
 
-          mapfile -t VALID_PKGS < <(sed 's/#.*//' packages.txt | xargs -n1 | awk 'NF')
+          mapfile -t VALID_PKGS < <(sed 's/#.*//' packages.txt | awk '{print $1}' | grep -v '^$' | sed 's/^local://')
 
           for dir in */ ; do
             [[ -e "$dir" ]] || continue
@@ -58,9 +58,16 @@ jobs:
           done
 
           while IFS= read -r raw_line || [[ -n "$raw_line" ]]; do
-            pkg="$(echo "$raw_line" | sed 's/#.*//' | xargs)"
-            [[ -z "$pkg" ]] && continue
+            pkg_entry="$(echo "$raw_line" | sed 's/#.*//' | xargs)"
+            [[ -z "$pkg_entry" ]] && continue
 
+            if [[ "$pkg_entry" == local:* ]]; then
+              pkg="${pkg_entry#local:}"
+              echo "Skipping sync for local package: $pkg"
+              continue
+            fi
+
+            pkg="$pkg_entry"
             echo "Cloning $pkg from AUR"
             rm -rf "/tmp/aur-clone/$pkg"
 

@@ -47,7 +47,7 @@ jobs:
           sed -i 's/^LOGDEST=/#LOGDEST=/g' /etc/makepkg.conf
           sed -i 's/^PACKAGECARCH=/#PACKAGECARCH=/g' /etc/makepkg.conf
 
-      - name: Insert DisableSandboxNetwork into pacman.conf options
+      - name: Configure pacman options and custom repository
         run: |
           set -euo pipefail
           tmp=$(mktemp)
@@ -59,6 +59,14 @@ jobs:
           ' /etc/pacman.conf > "$tmp"
           cat "$tmp" > /etc/pacman.conf
           rm -f "$tmp"
+
+          cat <<EOF >> /etc/pacman.conf
+
+          [nanoka]
+          SigLevel = Optional TrustAll
+          Server = https://github.com/nhktmdzhg/my-arch-repo/releases/download/repository
+          EOF
+          pacman -Sy
 
       - name: Checkout repository
         uses: actions/checkout@v7
