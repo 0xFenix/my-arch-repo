@@ -114,16 +114,16 @@
 # Build the zfs module in to the kernel
 # WARNING: The ZFS module doesn't build with selected RT sched due to licensing issues.
 # If you use ZFS, refrain from building the RT kernel
-: "${_build_zfs:=no}"
+: "${_build_zfs:=yes}"
 
 # Builds the open nvidia module and package it into a own base
 # This does replace the requirement of nvidia-open-dkms
 # Use this only if you have Turing+ GPU
-: "${_build_nvidia_open:=no}"
+: "${_build_nvidia_open:=yes}"
 
 # Builds the r8125 module and package it into its own package
 # Replaces requirement for r8125-dkms
-: "${_build_r8125:=no}"
+: "${_build_r8125:=yes}"
 
 # Build a debug package with non-stripped vmlinux
 : "${_build_debug:=no}"

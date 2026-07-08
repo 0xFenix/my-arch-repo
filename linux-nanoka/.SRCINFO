@@ -27,6 +27,7 @@ pkgbase = linux-nanoka
 	makedepends = clang
 	makedepends = llvm
 	makedepends = lld
+	makedepends = git
 	options = !strip
 	options = !debug
 	options = !lto
@@ -34,6 +35,9 @@ pkgbase = linux-nanoka
 	source = https://github.com/CachyOS/linux/releases/download/cachyos-7.1.3-1/cachyos-7.1.3-1.tar.gz.asc
 	source = config
 	source = https://raw.githubusercontent.com/cachyos/kernel-patches/master/7.1/misc/dkms-clang.patch
+	source = git+https://github.com/cachyos/zfs.git#commit=c681af76c5a6a15caada25eb13090e41218c7831
+	source = https://download.nvidia.com/XFree86/NVIDIA-kernel-module-source/NVIDIA-kernel-module-source-610.43.03.tar.xz
+	source = git+https://github.com/aravance/r8125.git
 	validpgpkeys = E18447AC260021D31F3FF6C4C8A2A4774B8B63C4
 	validpgpkeys = E8B9AA39F054E30E8290D492C3C4820857F654FE
 	b2sums = 68aa55635fa73ff7d8efd63e498a0d624806e9e2d24718c1fac497f2257ee9d511a16a1da12e061c9867e21a77c14afa0c30fcae6642f8ca2d19daa000d54e4d
@@ -78,3 +82,24 @@ pkgname = linux-nanoka-headers
 	provides = LINUX-HEADERS
 	provides = linux-cachyos-lto-headers=7.1.3-2
 	replaces = linux-cachyos-lto-headers
+
+pkgname = linux-nanoka-zfs
+	pkgdesc = zfs module for the Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. Build by Nanoka with love. kernel
+	license = CDDL
+	depends = pahole
+	depends = linux-nanoka=7.1.3-2
+	provides = ZFS-MODULE
+
+pkgname = linux-nanoka-nvidia-open
+	pkgdesc = nvidia open modules of 610.43.03 driver for the linux-nanoka kernel
+	license = MIT AND GPL-2.0-only
+	depends = linux-nanoka=7.1.3-2
+	depends = nvidia-utils=610.43.03
+	depends = libglvnd
+	provides = NVIDIA-MODULE
+	conflicts = linux-nanoka-nvidia
+
+pkgname = linux-nanoka-r8125
+	pkgdesc = r8125 modules for the linux-nanoka kernel
+	license = GPL-2.0-only
+	depends = linux-nanoka=7.1.3-2
