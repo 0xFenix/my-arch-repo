@@ -51,14 +51,12 @@ xclicker
 xmousepasteblock
 yuzufox-git
 zalo-for-linux-git
-
-#####
 # Xlibre packages
 xlibre-xserver
 xlibre-input-libinput
+noctalia-git
 
 #####
 # Local packages
 local:linux-nanoka
-local:mcontrolcenter-git
-local:opendoas-cpp-git
+
