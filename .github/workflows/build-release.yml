@@ -120,7 +120,7 @@ jobs:
 
           echo "Fetching database metadata..."
           if gh release download "$RELEASE_TAG" --repo "${{ github.repository }}" --dir /tmp/repo-db --pattern "${REPO_DB_NAME}.files.tar.gz" 2>/dev/null; then
-             tar -xzf "/tmp/repo-db/${REPO_DB_NAME}.files.tar.gz" -C /tmp/repo-files 2>/dev/null || true
+            tar -xzf "/tmp/repo-db/${REPO_DB_NAME}.files.tar.gz" -C /tmp/repo-files 2>/dev/null || true
           fi
 
           echo "Checking status for $PKG"
@@ -133,70 +133,66 @@ jobs:
 
           NEEDS_BUILD=false
           if [[ -z "$EXPECTED_PKGS" ]]; then
-             NEEDS_BUILD=true
+            NEEDS_BUILD=true
           else
-             for pkg_path in $EXPECTED_PKGS; do
-               pkg_basename=$(basename "$pkg_path")
-               if ! grep -q -x "$pkg_basename" /tmp/repo-files/*/desc 2>/dev/null; then
-                 NEEDS_BUILD=true
-                 break
-               fi
-             done
+            for pkg_path in $EXPECTED_PKGS; do
+              pkg_basename=$(basename "$pkg_path")
+              if ! grep -q -x "$pkg_basename" /tmp/repo-files/*/desc 2>/dev/null; then
+                NEEDS_BUILD=true
+                break
+              fi
+            done
           fi
 
           if [[ "$NEEDS_BUILD" == "false" ]]; then
-             echo "Package $PKG is up to date. Fetching specific cache from release."
-             for pkg_path in $EXPECTED_PKGS; do
-               pkg_basename=$(basename "$pkg_path")
-               if ! gh release download "$RELEASE_TAG" --repo "${{ github.repository }}" --dir output --pattern "$pkg_basename" 2>/dev/null; then
-                  echo "Failed to fetch $pkg_basename cache. Forcing rebuild."
-                  NEEDS_BUILD=true
-                  break
-               fi
-             done
+            echo "Package $PKG is up to date. Fetching specific cache from release."
+            for pkg_path in $EXPECTED_PKGS; do
+              pkg_basename=$(basename "$pkg_path")
+              if ! gh release download "$RELEASE_TAG" --repo "${{ github.repository }}" --dir output --pattern "$pkg_basename" 2>/dev/null; then
+                echo "Failed to fetch $pkg_basename cache. Forcing rebuild."
+                NEEDS_BUILD=true
+                break
+              fi
+            done
           fi
 
           if [[ "$NEEDS_BUILD" == "false" ]]; then
-             echo "$PKG" > output/status-skipped-$PKG.txt
+            echo "$PKG" > output/status-skipped-$PKG.txt
           else
-             echo "Building $PKG with paru"
-             sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && paru --noconfirm --skipreview --useask --removemake --nocheck -B '$GITHUB_WORKSPACE/$PKG'" || true
-             
-             if ls "$PKG"/*.pkg.tar.zst >/dev/null 2>&1; then
-               mv "$PKG"/*.pkg.tar.zst output/
-               echo "Build OK: $PKG"
-               echo "$PKG" > output/status-built-$PKG.txt
-             else
-               echo "Build failed for $PKG"
-
-               echo "Triggering fallback mechanism for $PKG..."
-               FALLBACK_SUCCESS=false
-
-               if [[ -d /tmp/repo-files ]]; then
-                 for desc_file in /tmp/repo-files/*/desc; do
-                   [[ -f "$desc_file" ]] || continue
-                   base_pkg=$(awk '/^%BASE%/{getline; print; exit}' "$desc_file")
-                   pkg_name=$(awk '/^%NAME%/{getline; print; exit}' "$desc_file")
-                   check_name="${base_pkg:-$pkg_name}"
-
-                   if [[ "$check_name" == "$PKG" ]]; then
-                     file_name=$(awk '/^%FILENAME%/{getline; print; exit}' "$desc_file")
-                     if [[ -n "$file_name" ]]; then
-                       echo "Restoring $file_name from previous release"
-                       if gh release download "$RELEASE_TAG" --repo "${{ github.repository }}" --dir output --pattern "$file_name" 2>/dev/null; then
-                          FALLBACK_SUCCESS=true
-                          echo "$PKG" > output/status-failed-$PKG.txt
-                       fi
-                     fi
-                   fi
-                 done
-               fi
-
-               if [[ "$FALLBACK_SUCCESS" == "false" ]]; then
-                 echo "Fallback failed for $PKG: no previous files found. Gracefully exiting to ignore package."
-                 exit 0
-               fi
-             fi
+            echo "Building $PKG with paru"
+            sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && paru --noconfirm --skipreview --useask --removemake --nocheck -B '$GITHUB_WORKSPACE/$PKG'" || true             
+            if ls "$PKG"/*.pkg.tar.zst >/dev/null 2>&1; then
+              mv "$PKG"/*.pkg.tar.zst output/
+              echo "Build OK: $PKG"
+              echo "$PKG" > output/status-built-$PKG.txt
+            else
+              echo "Build failed for $PKG"
+              echo "Triggering fallback mechanism for $PKG..."
+              FALLBACK_SUCCESS=false
+              if [[ -d /tmp/repo-files ]]; then
+                for desc_file in /tmp/repo-files/*/desc; do
+                  [[ -f "$desc_file" ]] || continue
+                  base_pkg=$(awk '/^%BASE%/{getline; print; exit}' "$desc_file")
+                  pkg_name=$(awk '/^%NAME%/{getline; print; exit}' "$desc_file")
+                  check_name="${base_pkg:-$pkg_name}"
+                  if [[ "$check_name" == "$PKG" ]]; then
+                    file_name=$(awk '/^%FILENAME%/{getline; print; exit}' "$desc_file")
+                    if [[ -n "$file_name" ]]; then
+                      echo "Restoring $file_name from previous release"
+                      if gh release download "$RELEASE_TAG" --repo "${{ github.repository }}" --dir output --pattern "$file_name" 2>/dev/null; then
+                        FALLBACK_SUCCESS=true
+                        echo "$PKG" > output/status-failed-$PKG.txt
+                      fi
+                    fi
+                  fi
+                done
+              fi
+              if [[ "$FALLBACK_SUCCESS" == "false" ]]; then
+                echo "Fallback failed for $PKG: no previous files found. Gracefully exiting to ignore package."
+                echo "$PKG" > output/status-failed-$PKG.txt
+                exit 0
+              fi
+            fi
           fi
 
           sudo -u builder rm -rf "$GITHUB_WORKSPACE/$PKG/src" "$GITHUB_WORKSPACE/$PKG/pkg"

@@ -11,7 +11,6 @@ lightworks
 localsend
 lua-pam-git
 luajit-lgi
-mcontrolcenter-git
 msi-ec-dkms-git
 networkmanager-iwd
 nmtui-go
@@ -62,3 +61,4 @@ xlibre-xorgxrdp
 # Local packages
 local:linux-nanoka
 local:paru
+local:mcontrolcenter-git
