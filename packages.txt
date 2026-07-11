@@ -30,6 +30,6 @@ fcitx5-lotus
 
 #####
 # Local packages
-local:linux-nanoka
+#local:linux-nanoka
 local:paru
 local:mcontrolcenter-git
