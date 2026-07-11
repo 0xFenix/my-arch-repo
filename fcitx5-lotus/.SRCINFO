@@ -1,0 +1,47 @@
+pkgbase = fcitx5-lotus
+	pkgdesc = Vietnamese input method for fcitx5
+	pkgver = 3.4.0
+	pkgrel = 1
+	url = https://github.com/LotusInputMethod/fcitx5-lotus
+	arch = x86_64
+	license = GPL-3.0-or-later
+	makedepends = cmake
+	makedepends = go
+	makedepends = extra-cmake-modules
+	makedepends = gcc
+	makedepends = git
+	makedepends = libx11
+	makedepends = python
+	source = git+https://github.com/LotusInputMethod/fcitx5-lotus.git#tag=v3.4.0
+	source = git+https://github.com/LotusInputMethod/bamboo-core.git
+	sha256sums = bd4324591dc86f166225a5c2fc2a85b21aedba962154a1189e681b2a137ffa31
+	sha256sums = SKIP
+
+pkgname = fcitx5-lotus
+	install = fcitx5-lotus.install
+	depends = acl
+	depends = fcitx5
+	depends = libinput
+	depends = hicolor-icon-theme
+	depends = glibc
+	depends = libstdc++
+	depends = libgcc
+	depends = libudev.so
+	depends = python-qtpy
+	depends = python-dbus
+	optdepends = fcitx5-lotus-openrc: OpenRC init script for fcitx5-lotus
+	optdepends = fcitx5-lotus-runit: Runit service for fcitx5-lotus
+	provides = fcitx5-lotus
+	conflicts = fcitx5-lotus
+
+pkgname = fcitx5-lotus-openrc
+	pkgdesc = OpenRC init script for fcitx5-lotus
+	depends = fcitx5-lotus
+	provides = fcitx5-lotus-openrc
+	conflicts = fcitx5-lotus-openrc
+
+pkgname = fcitx5-lotus-runit
+	pkgdesc = Runit service for fcitx5-lotus
+	depends = fcitx5-lotus
+	provides = fcitx5-lotus-runit
+	conflicts = fcitx5-lotus-runit
