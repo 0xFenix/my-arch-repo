@@ -6,14 +6,16 @@ catppuccin-obs-theme-git
 catppuccin-whiskers-bin
 equicord-installer-bin
 icu74
+ksuperkey
 lightworks
 localsend
 lua-pam-git
-mcontrolcenter-bin
+luajit-lgi
 msi-ec-dkms-git
 networkmanager-iwd
 nmtui-go
 obs-pipewire-audio-capture
+onlyoffice
 osu-lazer-bin
 osu-mime
 physlock
@@ -60,3 +62,4 @@ xlibre-xorgxrdp
 # Local packages
 local:linux-nanoka
 local:paru
+local:mcontrolcenter-git
