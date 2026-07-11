@@ -5,11 +5,6 @@ anpan-git
 awesome-luajit-git
 beautyline
 catppuccin-fcitx5-git
-catppuccin-obs-theme-git
-catppuccin-whiskers-bin
-coccoc-browser-stable
-electron22-bin
-equicord-openasar
 fcitx5-lotus-git
 icu74
 ksuperkey
@@ -26,11 +21,6 @@ nvidia-utils
 obs-pipewire-audio-capture
 omp-bun
 onlyoffice
-osu-lazer-bin
-osu-mime
-pacman
-paru
-physlock
 picom-nhktmdzhg-git
 printcraft
 pvpn-go
