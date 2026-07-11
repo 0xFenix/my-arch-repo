@@ -51,6 +51,8 @@ xclicker
 xmousepasteblock
 yuzufox-git
 zalo-for-linux-git
+noctalia-git
+fcitx5-lotus
 # Xlibre packages
 xlibre-xserver
 xlibre-input-libinput
