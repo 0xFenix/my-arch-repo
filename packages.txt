@@ -13,7 +13,6 @@ msi-ec-dkms-git
 networkmanager-iwd
 nmtui-go
 obs-pipewire-audio-capture
-onlyoffice
 physlock
 pwvucontrol
 rhythmbox-plugin-tray-icon
