@@ -5,9 +5,7 @@ catppuccin-fcitx5-git
 catppuccin-obs-theme-git
 catppuccin-whiskers-bin
 equicord-installer-bin
-icu74
 ksuperkey
-lightworks
 localsend
 lua-pam-git
 luajit-lgi
@@ -16,15 +14,12 @@ networkmanager-iwd
 nmtui-go
 obs-pipewire-audio-capture
 onlyoffice
-osu-lazer-bin
-osu-mime
 physlock
 pwvucontrol
 rhythmbox-plugin-tray-icon
 ripdrag
 rustdesk
 snapper-rollback
-teamviewer
 ventoy
 vscodium
 wezterm-git
@@ -32,32 +27,6 @@ xclicker
 xmousepasteblock
 noctalia-git
 fcitx5-lotus
-
-#####
-# Xlibre packages
-xlibre-video-voodoo
-xlibre-video-vmware
-xlibre-video-vesa
-xlibre-video-sisusb
-xlibre-video-qxl
-xlibre-video-nouveau
-xlibre-video-intel
-xlibre-video-fbdev
-xlibre-video-dummy
-xlibre-video-ati
-xlibre-video-amdgpu
-xlibre-input-void
-xlibre-input-vmmouse
-xlibre-input-synaptics
-xlibre-input-evdev
-xlibre-input-elographics
-xlibre-xserver
-xlibre-input-wacom
-xlibre-input-libinput
-xlibre-meta
-xlibre-xorgxrdp-nvidia
-xlibre-xorgxrdp-glamor
-xlibre-xorgxrdp
 
 #####
 # Local packages
