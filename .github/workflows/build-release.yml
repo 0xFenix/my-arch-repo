@@ -160,7 +160,12 @@ jobs:
             echo "$PKG" > output/status-skipped-$PKG.txt
           else
             echo "Building $PKG with paru"
-            sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && paru --noconfirm --skipreview --useask --removemake --nocheck -B '$GITHUB_WORKSPACE/$PKG'" || true             
+            PARU_FLAGS="--noconfirm --skipreview --useask --removemake --nocheck -B"
+            if [[ "$PKG" == "pacman" ]]; then
+              echo "Package is pacman: adding --skipinteg to makepkg arguments"
+              PARU_FLAGS="$PARU_FLAGS --mflags --skipinteg"
+            fi
+            sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && paru $PARU_FLAGS '$GITHUB_WORKSPACE/$PKG'" || true
             if ls "$PKG"/*.pkg.tar.zst >/dev/null 2>&1; then
               mv "$PKG"/*.pkg.tar.zst output/
               echo "Build OK: $PKG"
