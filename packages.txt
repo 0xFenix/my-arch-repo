@@ -5,6 +5,7 @@ catppuccin-fcitx5-git
 catppuccin-obs-theme-git
 catppuccin-whiskers-bin
 equicord-installer-bin
+fcitx5-lotus-git
 icu74
 ksuperkey
 lightworks
