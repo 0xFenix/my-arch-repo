@@ -13,11 +13,15 @@ msi-ec-dkms-git
 networkmanager-iwd
 nmtui-go
 obs-pipewire-audio-capture
+pacman
+paru
 physlock
 pwvucontrol
+rate-mirrors
 rhythmbox-plugin-tray-icon
 ripdrag
 rustdesk
+scx-manager
 snapper-rollback
 ventoy
 vscodium
@@ -31,5 +35,4 @@ opencode
 #####
 # Local packages
 #local:linux-nanoka
-local:paru
-local:mcontrolcenter-git
+#local:mcontrolcenter-git
