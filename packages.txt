@@ -30,6 +30,7 @@ xclicker
 xmousepasteblock
 noctalia-git
 fcitx5-lotus
+fcitx5-lotus-git
 opencode
 
 #####
