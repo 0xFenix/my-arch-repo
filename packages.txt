@@ -26,6 +26,7 @@ xclicker
 xmousepasteblock
 noctalia-git
 fcitx5-lotus
+opencode
 
 #####
 # Local packages
