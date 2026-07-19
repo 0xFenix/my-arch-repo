@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: release-repo
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name != 'schedule' }}
 
 env:
   RELEASE_TAG: repository
