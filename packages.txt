@@ -1,6 +1,7 @@
 #####
 # AUR packages
 all-contributors-cli
+awesome-luajit-git
 beautyline
 catppuccin-fcitx5-git
 catppuccin-obs-theme-git

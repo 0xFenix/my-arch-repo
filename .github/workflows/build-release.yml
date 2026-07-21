@@ -114,6 +114,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PKG: ${{ matrix.package }}
+          _BUILD_DOCS: 0
         run: |
           set -uo pipefail
           mkdir -p output /tmp/repo-files /tmp/repo-db
@@ -227,7 +228,7 @@ jobs:
     needs: [prepare, build]
     runs-on: ubuntu-latest
     container:
-      image: cachyos/cachyos-v3
+      image: ghcr.io/archlinux/archlinux:latest
     steps:
       - name: Install dependencies
         run: pacman -Syu --noconfirm --needed github-cli pacman-contrib jq
