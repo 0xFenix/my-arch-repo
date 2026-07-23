@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: release-repo
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name != 'schedule' }}
 
 env:
   RELEASE_TAG: repository
@@ -170,6 +170,7 @@ jobs:
               echo "Package is pacman: adding --skipinteg to makepkg arguments"
               PARU_FLAGS="$PARU_FLAGS --mflags --skipinteg"
             fi
+            sed -i 's/_BUILD_DOCS=.*/_BUILD_DOCS=0/' "$PKG/PKGBUILD"
             sudo -u builder bash -lc "cd '$GITHUB_WORKSPACE/$PKG' && paru $PARU_FLAGS '$GITHUB_WORKSPACE/$PKG'" || true
             if ls "$PKG"/*.pkg.tar.zst >/dev/null 2>&1; then
               mv "$PKG"/*.pkg.tar.zst output/
@@ -205,6 +206,14 @@ jobs:
             fi
           fi
 
+          for f in output/*:* ; do
+            if [[ -f "$f" ]]; then
+              new_f="${f//:/.}"
+              echo "Renaming $f to $new_f"
+              mv "$f" "$new_f"
+            fi
+          done
+
           sudo -u builder rm -rf "$GITHUB_WORKSPACE/$PKG/src" "$GITHUB_WORKSPACE/$PKG/pkg"
 
       - name: Upload Artifact
@@ -219,7 +228,7 @@ jobs:
     needs: [prepare, build]
     runs-on: ubuntu-latest
     container:
-      image: cachyos/cachyos-v3
+      image: ghcr.io/archlinux/archlinux:latest
     steps:
       - name: Install dependencies
         run: pacman -Syu --noconfirm --needed github-cli pacman-contrib jq
