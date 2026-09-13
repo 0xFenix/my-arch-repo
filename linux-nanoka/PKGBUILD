@@ -546,6 +546,9 @@ _sign_modules() {
 
 build() {
     cd "$_srcname"
+    # gud first
+    make "${BUILD_FLAGS[@]}" V=1 -j"$(nproc)" M=drivers/gpu/drm/gud modules
+
     make "${BUILD_FLAGS[@]}" -j"$(nproc)" all
 
     if ! _is_ci_build; then
