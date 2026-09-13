@@ -49,7 +49,7 @@
 : "${_use_current:=no}"
 
 ### Enable KBUILD_CFLAGS -O3
-: "${_cc_harder:=yes}"
+: "${_cc_harder:=no}"
 
 ### Set performance governor as default
 : "${_per_gov:=no}"
@@ -546,8 +546,6 @@ _sign_modules() {
 
 build() {
     cd "$_srcname"
-    # gud first
-    make "${BUILD_FLAGS[@]}" V=1 -j"$(nproc)" M=drivers/gpu/drm/gud modules
 
     make "${BUILD_FLAGS[@]}" -j"$(nproc)" all
 
