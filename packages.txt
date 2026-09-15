@@ -28,7 +28,6 @@ ttf-vietnamese-vni
 ventoy
 vscodium
 xclicker
-<<<<<<< HEAD
 noctalia-git
 fcitx5-lotus
 opencode
