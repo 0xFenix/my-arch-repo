@@ -12,9 +12,6 @@ ttf-vietnamese-vni
 ventoy
 vscodium
 xclicker
-xmousepasteblock
-yuzufox-git
-zalo-for-linux-git
 noctalia-git
 fcitx5-lotus
 #####
