@@ -1,6 +1,7 @@
 #####
 # AUR packages
 all-contributors-cli
+anpan-git
 awesome-luajit-git
 beautyline
 catppuccin-fcitx5-git
@@ -27,10 +28,11 @@ ttf-vietnamese-vni
 ventoy
 vscodium
 xclicker
+<<<<<<< HEAD
 noctalia-git
 fcitx5-lotus
 opencode
-
+zalo-for-linux-git
 #####
 # Local packages
 #local:linux-nanoka
