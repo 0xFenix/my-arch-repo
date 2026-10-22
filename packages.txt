@@ -1,6 +1,21 @@
 #####
 # AUR packages
+all-contributors-cli
+anpan-git
+awesome-luajit-git
+beautyline
+catppuccin-fcitx5-git
+fcitx5-lotus-git
+icu74
+ksuperkey
+localsend
+lua-pam-git
+luajit-lgi
+magika
+msi-ec-dkms-git
 networkmanager-iwd
+pacman
+paru
 rate-mirrors
 rhythmbox-plugin-tray-icon
 ripdrag
@@ -12,6 +27,10 @@ ttf-vietnamese-vni
 ventoy
 vscodium
 xclicker
+noctalia-git
+fcitx5-lotus
+opencode
+zalo-for-linux-git
 noctalia-git
 fcitx5-lotus
 #####
