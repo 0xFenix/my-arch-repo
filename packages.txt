@@ -5,23 +5,21 @@ catppuccin-fcitx5-git
 fcitx5-lotus-git
 icu74
 ksuperkey
-localsend
 msi-ec-dkms-git
 networkmanager-iwd
 pacman
 paru
 rate-mirrors
 rhythmbox-plugin-tray-icon
-rustdesk
 scx-manager
 snapper-rollback
 ttf-ms-win11-base
 ttf-vietnamese-tcvn3
 ttf-vietnamese-vni
-ventoy
 xclicker
 noctalia-git
 umbriel-git
+luciole-git
 zalo-for-linux-git
 #####
 # Local packages
