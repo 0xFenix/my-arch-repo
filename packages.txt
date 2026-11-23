@@ -1,43 +1,28 @@
 #####
 # AUR packages
 all-contributors-cli
-anpan-git
-awesome-luajit-git
-beautyline
 catppuccin-fcitx5-git
 fcitx5-lotus-git
-filmcraft
-gridcraft
 icu74
 ksuperkey
 localsend
-lua-pam-git
-luajit-lgi
-magika
 msi-ec-dkms-git
 networkmanager-iwd
 pacman
 paru
 rate-mirrors
 rhythmbox-plugin-tray-icon
-ripdrag
 rustdesk
 scx-manager
 snapper-rollback
-soundcraft
 ttf-ms-win11-base
 ttf-vietnamese-tcvn3
 ttf-vietnamese-vni
 ventoy
-vscodium
-wordcraft
 xclicker
 noctalia-git
-fcitx5-lotus
-opencode
+umbriel-git
 zalo-for-linux-git
-noctalia-git
-fcitx5-lotus
 #####
 # Local packages
-local:linux-nanoka
+# local:linux-nanoka
