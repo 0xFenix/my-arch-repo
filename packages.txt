@@ -6,6 +6,8 @@ awesome-luajit-git
 beautyline
 catppuccin-fcitx5-git
 fcitx5-lotus-git
+filmcraft
+gridcraft
 icu74
 ksuperkey
 localsend
@@ -20,12 +22,15 @@ rate-mirrors
 rhythmbox-plugin-tray-icon
 ripdrag
 rustdesk
+scx-manager
 snapper-rollback
+soundcraft
 ttf-ms-win11-base
 ttf-vietnamese-tcvn3
 ttf-vietnamese-vni
 ventoy
 vscodium
+wordcraft
 xclicker
 noctalia-git
 fcitx5-lotus
@@ -36,4 +41,3 @@ fcitx5-lotus
 #####
 # Local packages
 local:linux-nanoka
-
