@@ -21,6 +21,7 @@ noctalia-git
 umbriel-git
 luciole-git
 zalo-for-linux-git
+xdg-desktop-portal-umbriel-git
 #####
 # Local packages
 # local:linux-nanoka
